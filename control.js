@@ -6,6 +6,9 @@ const canvasHeight = 180;
 const canvasWidth = 320;
 const rectangleWidth = 32;
 const rectangleHeight = 32
+const lineWidth = 4;
+const center = 144
+const middle = 164;
 
 context = document.querySelector("canvas").getContext("2d");
 
@@ -16,7 +19,7 @@ rectangle = { // dimensions and state of rectangle
   height: rectangleHeight,
   jumping: true,
   width: rectangleWidth,
-  x: 144,
+  x: center,
   xVelocity: 0,
   y: 0,
   yVelocity: 0
@@ -84,10 +87,10 @@ loop = function() {
   context.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
   context.fill();
   context.strokeStyle = "#202830";
-  context.lineWidth = 4;
+  context.lineWidth = lineWidth;
   context.beginPath();
-  context.moveTo(0, 164);
-  context.lineTo(canvasWidth, 164);
+  context.moveTo(0, middle);
+  context.lineTo(canvasWidth, middle);
   context.stroke();
 
   // call update when the browser is ready to draw again
