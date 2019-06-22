@@ -2,12 +2,12 @@ var context, controller, rectangle, loop;
 
 const gravity = 1.5;
 const friction = 0.9;
-const canvasHeight = 180;
-const canvasWidth = 320;
+const canvasHeight = 700;
+const canvasWidth = 1400;
 const rectangleWidth = 32;
-const rectangleHeight = 32
+const rectangleHeight = 32;
 const lineWidth = 4;
-const center = 144
+const center = 144;
 const middle = 164;
 
 context = document.querySelector("canvas").getContext("2d");
@@ -15,7 +15,8 @@ context = document.querySelector("canvas").getContext("2d");
 context.canvas.height = canvasHeight;
 context.canvas.width = canvasWidth;
 
-rectangle = { // dimensions and state of rectangle
+rectangle = {
+  // dimensions and state of rectangle
   height: rectangleHeight,
   jumping: true,
   width: rectangleWidth,
@@ -49,16 +50,16 @@ controller = {
 
 loop = function() {
   if (controller.up && rectangle.jumping == false) {
-    rectangle.yVelocity -= 20;
+    rectangle.yVelocity -= 30;
     rectangle.jumping = true;
   }
 
   if (controller.left) {
-    rectangle.xVelocity -= 0.5;
+    rectangle.xVelocity -= 1;
   }
 
   if (controller.right) {
-    rectangle.xVelocity += 0.5;
+    rectangle.xVelocity += 1;
   }
   rectangle.yVelocity += gravity;
   rectangle.x += rectangle.xVelocity;
@@ -67,6 +68,7 @@ loop = function() {
   rectangle.yVelocity *= friction;
 
   // if rectangle is falling below floor line
+  //need to make a function that
   if (rectangle.y > canvasHeight - 16 - 32) {
     rectangle.jumping = false;
     rectangle.y = canvasHeight - 16 - 32;
