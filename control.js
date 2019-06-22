@@ -7,8 +7,8 @@ const canvasWidth = 1400;
 const rectangleWidth = 32;
 const rectangleHeight = 32;
 const lineWidth = 4;
-const center = 144;
-const middle = 164;
+const startLocation = 20;
+const middle = canvasHeight - rectangleHeight / 2//canvasHeight; 700
 
 context = document.querySelector("canvas").getContext("2d");
 
@@ -20,7 +20,7 @@ rectangle = {
   height: rectangleHeight,
   jumping: true,
   width: rectangleWidth,
-  x: center,
+  x: startLocation,
   xVelocity: 0,
   y: 0,
   yVelocity: 0
@@ -47,6 +47,23 @@ controller = {
     }
   }
 };
+
+class Platform {
+  constructor(x1, x2, y1, y2) {
+    this.x1 = x1;
+    this.x2 = x2;
+    this.y1 = y1;
+    this.y2 = y2;
+  }
+
+  print() {
+    console.log(this.x1 + this.x2);
+  }
+}
+
+platform = new Platform(11, 12, 3, 4);
+
+platform.print();
 
 loop = function() {
   if (controller.up && rectangle.jumping == false) {
@@ -90,6 +107,7 @@ loop = function() {
   context.fill();
   context.strokeStyle = "#202830";
   context.lineWidth = lineWidth;
+
   context.beginPath();
   context.moveTo(0, middle);
   context.lineTo(canvasWidth, middle);
