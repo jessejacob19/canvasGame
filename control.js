@@ -8,7 +8,11 @@ const rectangleWidth = 32;
 const rectangleHeight = 32;
 const lineWidth = 4;
 const startLocation = 20;
-const middle = canvasHeight - rectangleHeight / 2//canvasHeight; 700
+const middle = canvasHeight - rectangleHeight / 2; //canvasHeight; 700
+
+const platformArray = [
+  []
+]
 
 context = document.querySelector("canvas").getContext("2d");
 
@@ -49,15 +53,14 @@ controller = {
 };
 
 class Platform {
-  constructor(x1, x2, y1, y2) {
+  constructor(x1, x2, y) {
     this.x1 = x1;
     this.x2 = x2;
-    this.y1 = y1;
-    this.y2 = y2;
+    this.y = y;
   }
+  //not quite sure how to show that the player is on the platform
+  isOnPlatform() {
 
-  print() {
-    console.log(this.x1 + this.x2);
   }
 }
 
@@ -86,11 +89,13 @@ loop = function() {
 
   // if rectangle is falling below floor line
   //need to make a function that
+  //##########################################
   if (rectangle.y > canvasHeight - 16 - 32) {
     rectangle.jumping = false;
     rectangle.y = canvasHeight - 16 - 32;
     rectangle.yVelocity = 0;
-  }
+  } //########################################
+
   //if the rectangle is going off the left of the screen
   if (rectangle.x < -32) {
     rectangle.x = canvasWidth;
@@ -105,14 +110,14 @@ loop = function() {
   context.beginPath();
   context.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
   context.fill();
+  //for loop >>>
   context.strokeStyle = "#202830";
   context.lineWidth = lineWidth;
-
   context.beginPath();
   context.moveTo(0, middle);
   context.lineTo(canvasWidth, middle);
   context.stroke();
-
+  //<<<<<<
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);
 };
